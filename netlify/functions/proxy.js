@@ -1,8 +1,7 @@
-const fetch = require('node-fetch');
-
 exports.handler = async (event, context) => {
   const targetUrl = 'https://pwthor.live' + event.path;
 
+  // Global 'fetch' ka use kar rahe hain, jo Node.js mein built-in hota hai
   const response = await fetch(targetUrl, {
     method: event.httpMethod,
     headers: { ...event.headers, host: 'pwthor.live' }
