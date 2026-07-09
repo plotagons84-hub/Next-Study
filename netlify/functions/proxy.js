@@ -1,10 +1,13 @@
 exports.handler = async (event, context) => {
   const targetUrl = 'https://pwthor.live' + event.path;
 
-  // Global 'fetch' ka use kar rahe hain, jo Node.js mein built-in hota hai
   const response = await fetch(targetUrl, {
     method: event.httpMethod,
-    headers: { ...event.headers, host: 'pwthor.live' }
+    headers: { 
+      ...event.headers, 
+      'host': 'pwthor.live',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36' 
+    }
   });
 
   let body = await response.text();
