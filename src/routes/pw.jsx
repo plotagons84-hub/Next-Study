@@ -4,13 +4,13 @@ import { rootRoute } from './__root'
 import { subscribePlatforms, sortForDisplay } from '../lib/platformsFirestore'
 import PlatformDashboard from '../components/PlatformDashboard'
 
-export const nextTopperRoute = createRoute({
+export const pwRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/next-topper',
-  component: NextTopperDashboard,
+  path: '/pw',
+  component: PwDashboard,
 })
 
-function NextTopperDashboard() {
+function PwDashboard() {
   const [items, setItems] = useState([])
   // Don't show anything until the live lock/hide state has actually
   // arrived - see the matching comment in routes/index.jsx.
@@ -18,7 +18,7 @@ function NextTopperDashboard() {
   useEffect(
     () =>
       subscribePlatforms((data) => {
-        setItems(sortForDisplay(data.nextTopperPlatforms))
+        setItems(sortForDisplay(data.pwPlatforms))
         setLoaded(true)
       }),
     []
@@ -26,10 +26,10 @@ function NextTopperDashboard() {
 
   return (
     <PlatformDashboard
-      title="NEXT TOPPER ULTIMATE"
-      subtitle="Pick a version to continue"
+      title="PW ULTIMATE"
+      subtitle="Pick a login mode to continue"
       items={items}
-      basePath="/next-topper"
+      basePath="/pw"
       loaded={loaded}
     />
   )
